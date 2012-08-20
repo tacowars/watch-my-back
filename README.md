@@ -12,5 +12,5 @@ http://www.youtube.com/watch?v=me5pYO3vPPQ
 - software serial debug lib is by Dimitar Dimitrov
 
 Pictures of the board
-![board](tacowars.github.com/watch-my-back/docs/DSC_0119.jpg)
-![board](tacowars.github.com/watch-my-back/docs/DSC_0120.jpg)
+![board_top](/watch-my-back/docs/DSC_0119.jpg)
+![board_bottom](/watch-my-back/docs/DSC_0120.jpg)
