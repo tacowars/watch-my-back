@@ -32,6 +32,9 @@ like my Tenergy TB6AC.
 ### Board
 Video:
 http://www.youtube.com/watch?v=me5pYO3vPPQ
-![schematic](https://raw.github.com/tacowars/watch-my-back/master/docs/schematic.png)
-![board_top](https://raw.github.com/tacowars/watch-my-back/master/docs/DSC_0119.jpg)
-![board_bottom](https://raw.github.com/tacowars/watch-my-back/master/docs/DSC_0120.jpg)
+
+![schematic](https://raw.github.com/tacowars/watch-my-back/master/docs/schematic.png "Schematic")
+
+![board_top](https://raw.github.com/tacowars/watch-my-back/master/docs/DSC_0119.jpg "Top")
+
+![board_bottom](https://raw.github.com/tacowars/watch-my-back/master/docs/DSC_0120.jpg "Bottom")
