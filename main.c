@@ -43,10 +43,11 @@ static void config_hardware(void) {
 	   /* disable interrupts globally */
 	     cli();
 
-		/* power */
+		/* power reduction */
 		set_sleep_mode(SLEEP_MODE_PWR_DOWN);
-		ADCSRA = 0x00; //Disable ADC
-		PORTB = 0x00; // Disable any outputs
+		DDRB = 0x00; // Set direction to input on all pins
+		PORTB = 0xFF; // Enable pull-ups on pins
+		PRR |= _BV(PRUSI) | _BV(PRADC); // turn off peripherals not in use
 
 		/* init software serial tx (disabled in trace.h) */
 		char bootmsg[] = "-- Tiny85 Alarm Boot --";

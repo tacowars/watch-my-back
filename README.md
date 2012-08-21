@@ -30,7 +30,7 @@ like my Tenergy TB6AC.
 - software serial debug lib is by Dimitar Dimitrov
 
 ### Board
-Video:
+Video of it in action:
 http://www.youtube.com/watch?v=me5pYO3vPPQ
 
 ![schematic](https://raw.github.com/tacowars/watch-my-back/master/docs/schematic.png "Schematic")

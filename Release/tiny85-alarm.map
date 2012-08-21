@@ -120,7 +120,7 @@ LOAD /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr25/libgcc.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x120
+.text           0x00000000      0x128
  *(.vectors)
  .vectors       0x00000000       0x1e /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr25/crttn85.o
                 0x00000000                __vectors
@@ -188,21 +188,21 @@ LOAD /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr25/libgcc.a
                 0x0000003e                __vector_14
                 0x0000003e                __vector_1
  .text          0x00000040        0x0 ./libs/trace.o
- .text          0x00000040       0xdc ./main.o
+ .text          0x00000040       0xe4 ./main.o
                 0x00000040                __vector_2
                 0x00000056                __vector_4
                 0x00000090                main
- .text          0x0000011c        0x0 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr25/libgcc.a(_exit.o)
- .text          0x0000011c        0x0 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr25/libgcc.a(_clear_bss.o)
-                0x0000011c                . = ALIGN (0x2)
+ .text          0x00000124        0x0 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr25/libgcc.a(_exit.o)
+ .text          0x00000124        0x0 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr25/libgcc.a(_clear_bss.o)
+                0x00000124                . = ALIGN (0x2)
  *(.text.*)
- .text.libgcc   0x0000011c        0x0 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr25/libgcc.a(_exit.o)
- .text.libgcc   0x0000011c        0x0 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr25/libgcc.a(_clear_bss.o)
-                0x0000011c                . = ALIGN (0x2)
+ .text.libgcc   0x00000124        0x0 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr25/libgcc.a(_exit.o)
+ .text.libgcc   0x00000124        0x0 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr25/libgcc.a(_clear_bss.o)
+                0x00000124                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000011c        0x0 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr25/libgcc.a(_exit.o)
-                0x0000011c                exit
-                0x0000011c                _exit
+ .fini9         0x00000124        0x0 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr25/libgcc.a(_exit.o)
+                0x00000124                exit
+                0x00000124                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -221,11 +221,11 @@ LOAD /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr25/libgcc.a
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000011c        0x4 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr25/libgcc.a(_exit.o)
+ .fini0         0x00000124        0x4 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr25/libgcc.a(_exit.o)
  *(.fini0)
-                0x00000120                _etext = .
+                0x00000128                _etext = .
 
-.data           0x00800060        0x0 load address 0x00000120
+.data           0x00800060        0x0 load address 0x00000128
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/../../../../avr/lib/avr25/crttn85.o
@@ -254,8 +254,8 @@ LOAD /usr/local/CrossPack-AVR-20120217/lib/gcc/avr/4.5.1/avr25/libgcc.a
  COMMON         0x00800060        0x2 ./main.o
                 0x00800060                n
                 0x00800062                PROVIDE (__bss_end, .)
-                0x00000120                __data_load_start = LOADADDR (.data)
-                0x00000120                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00000128                __data_load_start = LOADADDR (.data)
+                0x00000128                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800062        0x0
                 0x00800062                PROVIDE (__noinit_start, .)
