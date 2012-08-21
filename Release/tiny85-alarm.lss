@@ -3,13 +3,13 @@ tiny85-alarm.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         0000010c  00000000  00000000  00000074  2**1
+  0 .text         00000120  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .bss          00000002  00800060  00800060  00000180  2**0
+  1 .bss          00000002  00800060  00800060  00000194  2**0
                   ALLOC
-  2 .stab         000006cc  00000000  00000000  00000180  2**2
+  2 .stab         000006cc  00000000  00000000  00000194  2**2
                   CONTENTS, READONLY, DEBUGGING
-  3 .stabstr      00000081  00000000  00000000  0000084c  2**0
+  3 .stabstr      00000081  00000000  00000000  00000860  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -52,8 +52,8 @@ Disassembly of section .text:
   34:	a2 36       	cpi	r26, 0x62	; 98
   36:	b1 07       	cpc	r27, r17
   38:	e1 f7       	brne	.-8      	; 0x32 <.do_clear_bss_loop>
-  3a:	20 d0       	rcall	.+64     	; 0x7c <main>
-  3c:	65 c0       	rjmp	.+202    	; 0x108 <_exit>
+  3a:	2a d0       	rcall	.+84     	; 0x90 <main>
+  3c:	6f c0       	rjmp	.+222    	; 0x11c <_exit>
 
 0000003e <__bad_interrupt>:
   3e:	e0 cf       	rjmp	.-64     	; 0x0 <__vectors>
@@ -80,86 +80,96 @@ Disassembly of section .text:
   60:	8f 93       	push	r24
   62:	89 b5       	in	r24, 0x29	; 41
   64:	8f 3f       	cpi	r24, 0xFF	; 255
-  66:	11 f4       	brne	.+4      	; 0x6c <__vector_4+0x16>
-  68:	88 ec       	ldi	r24, 0xC8	; 200
-  6a:	01 c0       	rjmp	.+2      	; 0x6e <__vector_4+0x18>
-  6c:	8f ef       	ldi	r24, 0xFF	; 255
-  6e:	89 bd       	out	0x29, r24	; 41
-  70:	8f 91       	pop	r24
-  72:	0f 90       	pop	r0
-  74:	0f be       	out	0x3f, r0	; 63
-  76:	0f 90       	pop	r0
-  78:	1f 90       	pop	r1
-  7a:	18 95       	reti
+  66:	39 f4       	brne	.+14     	; 0x76 <__vector_4+0x20>
+  68:	84 e0       	ldi	r24, 0x04	; 4
+  6a:	89 bd       	out	0x29, r24	; 41
+  6c:	82 e0       	ldi	r24, 0x02	; 2
+  6e:	88 bd       	out	0x28, r24	; 40
+  70:	83 b7       	in	r24, 0x33	; 51
+  72:	82 60       	ori	r24, 0x02	; 2
+  74:	06 c0       	rjmp	.+12     	; 0x82 <__vector_4+0x2c>
+  76:	8f ef       	ldi	r24, 0xFF	; 255
+  78:	89 bd       	out	0x29, r24	; 41
+  7a:	80 e8       	ldi	r24, 0x80	; 128
+  7c:	88 bd       	out	0x28, r24	; 40
+  7e:	83 b7       	in	r24, 0x33	; 51
+  80:	8d 7f       	andi	r24, 0xFD	; 253
+  82:	83 bf       	out	0x33, r24	; 51
+  84:	8f 91       	pop	r24
+  86:	0f 90       	pop	r0
+  88:	0f be       	out	0x3f, r0	; 63
+  8a:	0f 90       	pop	r0
+  8c:	1f 90       	pop	r1
+  8e:	18 95       	reti
 
-0000007c <main>:
-  7c:	f8 94       	cli
-  7e:	85 b7       	in	r24, 0x35	; 53
-  80:	87 7e       	andi	r24, 0xE7	; 231
-  82:	80 61       	ori	r24, 0x10	; 16
-  84:	85 bf       	out	0x35, r24	; 53
-  86:	16 b8       	out	0x06, r1	; 6
-  88:	18 ba       	out	0x18, r1	; 24
-  8a:	bb 9a       	sbi	0x17, 3	; 23
-  8c:	c3 9a       	sbi	0x18, 3	; 24
-  8e:	10 92 61 00 	sts	0x0061, r1
-  92:	10 92 60 00 	sts	0x0060, r1
-  96:	0e c0       	rjmp	.+28     	; 0xb4 <main+0x38>
-  98:	2f e3       	ldi	r18, 0x3F	; 63
-  9a:	32 e4       	ldi	r19, 0x42	; 66
-  9c:	4f e0       	ldi	r20, 0x0F	; 15
-  9e:	21 50       	subi	r18, 0x01	; 1
-  a0:	30 40       	sbci	r19, 0x00	; 0
-  a2:	40 40       	sbci	r20, 0x00	; 0
-  a4:	e1 f7       	brne	.-8      	; 0x9e <main+0x22>
-  a6:	00 c0       	rjmp	.+0      	; 0xa8 <main+0x2c>
-  a8:	00 00       	nop
-  aa:	01 96       	adiw	r24, 0x01	; 1
-  ac:	90 93 61 00 	sts	0x0061, r25
-  b0:	80 93 60 00 	sts	0x0060, r24
-  b4:	80 91 60 00 	lds	r24, 0x0060
-  b8:	90 91 61 00 	lds	r25, 0x0061
-  bc:	8a 30       	cpi	r24, 0x0A	; 10
-  be:	91 05       	cpc	r25, r1
-  c0:	58 f3       	brcs	.-42     	; 0x98 <main+0x1c>
-  c2:	8a b5       	in	r24, 0x2a	; 42
-  c4:	83 63       	ori	r24, 0x33	; 51
-  c6:	8a bd       	out	0x2a, r24	; 42
-  c8:	83 b7       	in	r24, 0x33	; 51
-  ca:	89 60       	ori	r24, 0x09	; 9
-  cc:	83 bf       	out	0x33, r24	; 51
-  ce:	8f ef       	ldi	r24, 0xFF	; 255
-  d0:	89 bd       	out	0x29, r24	; 41
-  d2:	80 e8       	ldi	r24, 0x80	; 128
-  d4:	88 bd       	out	0x28, r24	; 40
-  d6:	b9 9a       	sbi	0x17, 1	; 23
-  d8:	80 b7       	in	r24, 0x30	; 48
-  da:	8a 60       	ori	r24, 0x0A	; 10
-  dc:	80 bf       	out	0x30, r24	; 48
-  de:	89 b7       	in	r24, 0x39	; 57
-  e0:	84 60       	ori	r24, 0x04	; 4
-  e2:	89 bf       	out	0x39, r24	; 57
-  e4:	87 b3       	in	r24, 0x17	; 23
-  e6:	87 bb       	out	0x17, r24	; 23
-  e8:	8b b7       	in	r24, 0x3b	; 59
-  ea:	80 62       	ori	r24, 0x20	; 32
-  ec:	8b bf       	out	0x3b, r24	; 59
-  ee:	ac 9a       	sbi	0x15, 4	; 21
-  f0:	78 94       	sei
-  f2:	b4 99       	sbic	0x16, 4	; 22
-  f4:	fe cf       	rjmp	.-4      	; 0xf2 <main+0x76>
-  f6:	c3 98       	cbi	0x18, 3	; 24
-  f8:	85 b7       	in	r24, 0x35	; 53
-  fa:	80 62       	ori	r24, 0x20	; 32
-  fc:	85 bf       	out	0x35, r24	; 53
-  fe:	88 95       	sleep
- 100:	85 b7       	in	r24, 0x35	; 53
- 102:	8f 7d       	andi	r24, 0xDF	; 223
- 104:	85 bf       	out	0x35, r24	; 53
- 106:	f5 cf       	rjmp	.-22     	; 0xf2 <main+0x76>
+00000090 <main>:
+  90:	f8 94       	cli
+  92:	85 b7       	in	r24, 0x35	; 53
+  94:	87 7e       	andi	r24, 0xE7	; 231
+  96:	80 61       	ori	r24, 0x10	; 16
+  98:	85 bf       	out	0x35, r24	; 53
+  9a:	16 b8       	out	0x06, r1	; 6
+  9c:	18 ba       	out	0x18, r1	; 24
+  9e:	bb 9a       	sbi	0x17, 3	; 23
+  a0:	c3 9a       	sbi	0x18, 3	; 24
+  a2:	10 92 61 00 	sts	0x0061, r1
+  a6:	10 92 60 00 	sts	0x0060, r1
+  aa:	0e c0       	rjmp	.+28     	; 0xc8 <main+0x38>
+  ac:	2f e3       	ldi	r18, 0x3F	; 63
+  ae:	32 e4       	ldi	r19, 0x42	; 66
+  b0:	4f e0       	ldi	r20, 0x0F	; 15
+  b2:	21 50       	subi	r18, 0x01	; 1
+  b4:	30 40       	sbci	r19, 0x00	; 0
+  b6:	40 40       	sbci	r20, 0x00	; 0
+  b8:	e1 f7       	brne	.-8      	; 0xb2 <main+0x22>
+  ba:	00 c0       	rjmp	.+0      	; 0xbc <main+0x2c>
+  bc:	00 00       	nop
+  be:	01 96       	adiw	r24, 0x01	; 1
+  c0:	90 93 61 00 	sts	0x0061, r25
+  c4:	80 93 60 00 	sts	0x0060, r24
+  c8:	80 91 60 00 	lds	r24, 0x0060
+  cc:	90 91 61 00 	lds	r25, 0x0061
+  d0:	8a 30       	cpi	r24, 0x0A	; 10
+  d2:	91 05       	cpc	r25, r1
+  d4:	58 f3       	brcs	.-42     	; 0xac <main+0x1c>
+  d6:	8a b5       	in	r24, 0x2a	; 42
+  d8:	83 63       	ori	r24, 0x33	; 51
+  da:	8a bd       	out	0x2a, r24	; 42
+  dc:	83 b7       	in	r24, 0x33	; 51
+  de:	89 60       	ori	r24, 0x09	; 9
+  e0:	83 bf       	out	0x33, r24	; 51
+  e2:	8f ef       	ldi	r24, 0xFF	; 255
+  e4:	89 bd       	out	0x29, r24	; 41
+  e6:	80 e8       	ldi	r24, 0x80	; 128
+  e8:	88 bd       	out	0x28, r24	; 40
+  ea:	b9 9a       	sbi	0x17, 1	; 23
+  ec:	80 b7       	in	r24, 0x30	; 48
+  ee:	8a 60       	ori	r24, 0x0A	; 10
+  f0:	80 bf       	out	0x30, r24	; 48
+  f2:	89 b7       	in	r24, 0x39	; 57
+  f4:	84 60       	ori	r24, 0x04	; 4
+  f6:	89 bf       	out	0x39, r24	; 57
+  f8:	87 b3       	in	r24, 0x17	; 23
+  fa:	87 bb       	out	0x17, r24	; 23
+  fc:	8b b7       	in	r24, 0x3b	; 59
+  fe:	80 62       	ori	r24, 0x20	; 32
+ 100:	8b bf       	out	0x3b, r24	; 59
+ 102:	ac 9a       	sbi	0x15, 4	; 21
+ 104:	78 94       	sei
+ 106:	b4 99       	sbic	0x16, 4	; 22
+ 108:	fe cf       	rjmp	.-4      	; 0x106 <main+0x76>
+ 10a:	c3 98       	cbi	0x18, 3	; 24
+ 10c:	85 b7       	in	r24, 0x35	; 53
+ 10e:	80 62       	ori	r24, 0x20	; 32
+ 110:	85 bf       	out	0x35, r24	; 53
+ 112:	88 95       	sleep
+ 114:	85 b7       	in	r24, 0x35	; 53
+ 116:	8f 7d       	andi	r24, 0xDF	; 223
+ 118:	85 bf       	out	0x35, r24	; 53
+ 11a:	f5 cf       	rjmp	.-22     	; 0x106 <main+0x76>
 
-00000108 <_exit>:
- 108:	f8 94       	cli
+0000011c <_exit>:
+ 11c:	f8 94       	cli
 
-0000010a <__stop_program>:
- 10a:	ff cf       	rjmp	.-2      	; 0x10a <__stop_program>
+0000011e <__stop_program>:
+ 11e:	ff cf       	rjmp	.-2      	; 0x11e <__stop_program>

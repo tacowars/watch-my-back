@@ -16,6 +16,7 @@
 #define LED PB3
 unsigned n;
 
+
 // wake from sleep
 //EMPTY_INTERRUPT();
 ISR(PCINT0_vect) {
@@ -24,8 +25,17 @@ ISR(PCINT0_vect) {
 }
 
 ISR(TIM1_OVF_vect) {
-	/* change alarm to make klaxon sound */
-	OCR0A = OCR0A > 254 ? 200 : 255;
+	/* change alarm frequency to make klaxon sound.
+	 * switching clock to get 4000hz and ~3000hz accuracy */
+	if (OCR0A == 255) {
+		OCR0A = 4;
+		OCR0B = 2;
+		TCCR0B |= _BV(CS01);
+	} else {
+		OCR0A = 255;
+		OCR0B = 128;
+		TCCR0B &= ~_BV(CS01);
+	}
 }
 
 
@@ -38,7 +48,7 @@ static void config_hardware(void) {
 		ADCSRA = 0x00; //Disable ADC
 		PORTB = 0x00; // Disable any outputs
 
-		/* init software serial tx and say hi */
+		/* init software serial tx (disabled in trace.h) */
 		char bootmsg[] = "-- Tiny85 Alarm Boot --";
 		dbg_tx_init();
 		dbg_putstring(bootmsg);
