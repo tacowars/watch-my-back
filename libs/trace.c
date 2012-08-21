@@ -83,8 +83,6 @@ void dbg_putchar(uint8_t c)
 #undef DBG_UART_TX_NUM_DELAY_CYCLES
 #undef DBG_UART_TX_NUM_ADD_NOP
 
-#endif
-
 void dbg_putstring(char string[])
 {
    int i=0;
@@ -96,3 +94,5 @@ void dbg_putstring(char string[])
    dbg_putchar(13); // Newline
    dbg_putchar(10);
 }
+
+#endif

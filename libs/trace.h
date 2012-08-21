@@ -16,7 +16,7 @@
 #include <stdint.h>
 
 /* User setting -> Whether to enable the software UART */
-#define DBG_UART_ENABLE		1
+#define DBG_UART_ENABLE		0
 
 /* User setting -> Output pin the software UART */
 #define DBG_UART_TX_PORT	PORTB
@@ -57,6 +57,7 @@ extern void dbg_putstring(char string[]);
 #else
   #define dbg_tx_init()		
   #define dbg_putchar(A)		((void)(A))
+  #define dbg_putstring(A)		((void)(A))
 #endif	/* DBG_UART_ENABLE */
 
 #endif	/* DBG_PUTCHAR_H */
