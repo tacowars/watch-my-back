@@ -14,6 +14,7 @@
 #include "libs/trace.h"
 
 #define LED PB3
+#define PIR PB4
 unsigned n;
 
 
@@ -55,7 +56,7 @@ static void config_hardware(void) {
 		dbg_putstring(bootmsg);
 
 		/* status led */
-		DDRB |= (1 << LED);
+		DDRB |= _BV(LED);
 		PORTB |= _BV(LED); //ON!
 
 		/* crude delay to allow PIR sensor to initialize */
@@ -78,7 +79,8 @@ static void config_hardware(void) {
 	 	TIMSK |= _BV(TOIE1); // overflow interrupt
 
 	 	/* PIR sensor setup */
-	    DDRB |= (0 << PB4);
+	    DDRB &= ~_BV(PIR);
+	    PORTB &= ~_BV(PIR);
 	    GIMSK |= _BV(PCIE); // pin change interrupt
 	    PCMSK |= _BV(PCINT4); // triggers PCINT0_vect
 
@@ -92,7 +94,7 @@ int main(void)
 
 	while (1) {
 
-		if (!bit_is_set(PINB, PB4)) { // If PIR sensor is low, sleep.
+		if (!bit_is_set(PINB, PIR)) { // If PIR sensor is low, sleep.
 			PORTB &= ~_BV(LED); // turn LED off
 			sleep_mode();
 		}

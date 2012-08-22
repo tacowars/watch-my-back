@@ -153,8 +153,8 @@ Disassembly of section .text:
   fa:	89 b7       	in	r24, 0x39	; 57
   fc:	84 60       	ori	r24, 0x04	; 4
   fe:	89 bf       	out	0x39, r24	; 57
- 100:	87 b3       	in	r24, 0x17	; 23
- 102:	87 bb       	out	0x17, r24	; 23
+ 100:	bc 98       	cbi	0x17, 4	; 23
+ 102:	c4 98       	cbi	0x18, 4	; 24
  104:	8b b7       	in	r24, 0x3b	; 59
  106:	80 62       	ori	r24, 0x20	; 32
  108:	8b bf       	out	0x3b, r24	; 59
